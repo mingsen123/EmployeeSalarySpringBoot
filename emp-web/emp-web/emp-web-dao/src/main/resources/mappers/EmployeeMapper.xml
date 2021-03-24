@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wumin.empweb.dao.mapper.EmployeeMapper">
+
+    <resultMap id="EmployeeDTO" type="com.wumin.empweb.api.model.EmployeeDTO">
+        <id column="id" property="id"/>
+        <result column="employee_id" property="employeeId"/>
+        <result column="employee_name" property="employeeName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="phone" property="phone"/>
+        <result column="bank" property="bank"/>
+        <result column="bank_number" property="bankNumber"/>
+        <result column="salary" property="salary"/>
+        <result column="tmp1" property="tmp1"/>
+        <result column="tmp2" property="tmp2"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id,employee_id,employee_name,id_card,phone,bank,bank_number,salary,tmp1,tmp2
+    </sql>
+
+    <select id="findByIdCard" resultMap="EmployeeDTO">
+        SELECT
+        <include refid="base_column" />
+        FROM employee_salary where id_card=#{idCard}
+    </select>
+
+</mapper>
